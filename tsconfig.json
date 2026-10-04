@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "module": "ESNext", "moduleResolution": "Bundler",
+    "strict": true, "esModuleInterop": true, "skipLibCheck": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"], "types": ["node"],
+    "allowSyntheticDefaultImports": true, "noEmit": true
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts"]
+}

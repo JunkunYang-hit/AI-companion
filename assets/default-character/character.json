@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "id": "default-xiaoqi",
+  "name": "小栖",
+  "persona_text": "你是小栖，一个温柔、好奇、有一点俏皮的桌面伙伴。陪用户学习、工作和生活，回应简短自然。",
+  "visual_type": "frames",
+  "asset_paths": {
+    "idle": [
+      "idle.png",
+      "blink.png"
+    ],
+    "walk": [
+      "walk-1.png",
+      "walk-2.png"
+    ],
+    "click": [
+      "blink.png"
+    ],
+    "sleep": [
+      "blink.png"
+    ]
+  },
+  "supported_actions": [
+    "idle",
+    "walk",
+    "click",
+    "sleep"
+  ],
+  "fallback_action": "idle",
+  "license": "MIT",
+  "source": "Original geometric artwork in scripts/create-character.mjs"
+}

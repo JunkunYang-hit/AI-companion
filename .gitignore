@@ -1,0 +1,15 @@
+node_modules/
+.venv/
+dist/
+dist-tests/
+release/
+research/
+test-results/
+.env
+*.log
+*.db
+*.db-*
+*.key
+*.dpapi
+*.bin
+browser-extension/content.js

@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "AI 桌面伙伴 · 学习资料连接",
+  "version": "0.1.0",
+  "description": "只分享你选择的网页片段和 B 站播放状态，不控制播放器。",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["http://127.0.0.1/*"],
+  "optional_host_permissions": ["https://*/*"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_popup": "popup.html"},
+  "incognito": "not_allowed",
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'"}
+}

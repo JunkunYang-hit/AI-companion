@@ -1,0 +1,119 @@
+{
+  "name": "ai-companion-public",
+  "version": "0.1.7",
+  "private": true,
+  "description": "Windows AI 桌面伙伴",
+  "author": "JunkunYang-hit",
+  "license": "MIT",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "npm run build && node scripts/start.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/build-tests.mjs && node --test dist-tests/*.test.cjs",
+    "test:desktop": "npm run build && node scripts/desktop-test.mjs",
+    "test:integration": "npm run build && node scripts/integration-test.mjs",
+    "test:native": "npm run build && node scripts/native-test.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "pack": "npm run build && electron-builder --win --dir",
+    "dist:win": "npm run build && electron-builder --win nsis",
+    "test:characters": "npm run build && node scripts/characters-test.mjs",
+    "test:keys": "npm run build && node scripts/key-management-test.mjs",
+    "check:release": "node scripts/check-release.mjs"
+  },
+  "build": {
+    "compression": "maximum",
+    "electronLanguages": [
+      "zh-CN",
+      "en-US"
+    ],
+    "appId": "org.aicompanion.desktop.public",
+    "productName": "AI Companion",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "assets/**/*",
+      "LICENSE",
+      "NOTICE.md",
+      "docs/licenses/**/*",
+      "package.json",
+      "node_modules/sql.js/dist/sql-wasm.wasm",
+      "node_modules/koffi/**/*",
+      "!dist/**/*.map",
+      "!dist/pdf.worker.mjs",
+      "!node_modules/@mozilla/**/*",
+      "!node_modules/dompurify/**/*",
+      "!node_modules/fflate/**/*",
+      "!node_modules/katex/**/*",
+      "!node_modules/marked/**/*",
+      "!node_modules/undici/**/*",
+      "!node_modules/@napi-rs/**/*",
+      "!node_modules/pdfjs-dist/**/*.map",
+      "!node_modules/pdfjs-dist/build/**/*",
+      "!node_modules/pdfjs-dist/web/**/*",
+      "!node_modules/pdfjs-dist/types/**/*",
+      "!node_modules/pdfjs-dist/image_decoders/**/*",
+      "!node_modules/pdfjs-dist/legacy/web/**/*",
+      "!node_modules/sql.js/dist/*debug*",
+      "!node_modules/sql.js/dist/*sql-asm*",
+      "!node_modules/sql.js/dist/worker.*",
+      "!node_modules/sql.js/dist/*.zip",
+      "!node_modules/koffi/vendor/**/*",
+      "!node_modules/koffi/doc/**/*",
+      "!node_modules/koffi/src/**/*.cc",
+      "!node_modules/koffi/src/**/*.hh",
+      "!node_modules/gh-pages/**/*"
+    ],
+    "asarUnpack": [
+      "node_modules/koffi/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "requestedExecutionLevel": "asInvoker",
+      "icon": "assets/app-icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerLanguages": [
+        "zh_CN"
+      ],
+      "language": "2052"
+    }
+  },
+  "dependencies": {
+    "@mozilla/readability": "0.6.0",
+    "dompurify": "3.4.16",
+    "fflate": "0.8.3",
+    "katex": "0.18.9",
+    "koffi": "3.3.2",
+    "marked": "18.0.14",
+    "pdfjs-dist": "6.3.289",
+    "sql.js": "1.14.2",
+    "undici": "8.11.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/katex": "0.16.8",
+    "@types/node": "26.6.3",
+    "@types/sql.js": "1.4.11",
+    "electron": "44.5.0",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  },
+  "allowScripts": {
+    "electron@44.5.0": true,
+    "esbuild@0.28.2": true,
+    "koffi@3.3.2": true,
+    "electron-winstaller@5.4.0": true
+  },
+  "overrides": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JunkunYang-hit/AI-companion.git"
+  }
+}

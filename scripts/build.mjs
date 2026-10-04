@@ -1,0 +1,13 @@
+import { build } from 'esbuild';
+import { mkdir, cp, copyFile } from 'node:fs/promises';
+await mkdir('dist', { recursive: true });
+await build({entryPoints:['src/main/index.ts'],bundle:true,platform:'node',format:'cjs',outfile:'dist/main.cjs',external:['electron','sql.js','koffi'],sourcemap:true});
+await build({entryPoints:['src/main/preload.ts'],bundle:true,platform:'node',format:'cjs',outfile:'dist/preload.cjs',external:['electron']});
+await build({entryPoints:['src/context/pdf-worker.ts'],bundle:true,platform:'node',format:'esm',outfile:'dist/pdf-worker.mjs',external:['pdfjs-dist/legacy/build/pdf.mjs']});
+await build({entryPoints:['src/renderer/index.ts'],bundle:true,platform:'browser',format:'iife',outfile:'dist/renderer.js',loader:{'.woff2':'file','.woff':'file','.ttf':'file'}});
+await copyFile('src/renderer/index.html','dist/index.html');
+await copyFile('src/renderer/style.css','dist/style.css');
+await cp('node_modules/katex/dist/fonts','dist/fonts',{recursive:true});
+await copyFile('node_modules/katex/dist/katex.min.css','dist/katex.css');
+await copyFile('node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs','dist/pdf.worker.mjs');
+await build({entryPoints:['src/context/browser-content.ts'],bundle:true,platform:'browser',format:'iife',outfile:'browser-extension/content.js',legalComments:'eof'});
